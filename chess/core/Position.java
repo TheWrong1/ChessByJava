@@ -7,31 +7,23 @@ import java.util.Objects;
 public class Position {
 
     private int rank;
-
+    private int file;
     @Override
     public int hashCode() {
         return Objects.hash(rank, file);
     }
-
-    private int file;
-
     public Position() {
         this.rank = 0;
         this.file = 0;
     }
-
-
     public Position(Position other) {
         this.setRank(other.rank);
         this.setFile(other.file);
     }
-
     private Position(int rank, int file) {
         this.setRank(rank);
         this.setFile(file);
     }
-
-
     public int getRank() {
         return this.rank;
     }
@@ -49,7 +41,6 @@ public class Position {
     public String toString() {
         return "" + (char)('A' + this.file) + (Chess.BOARD_RANKS - this.rank);
     }
-
     public static Position generateFromString(String s) {
         s = s.toLowerCase();
         if (s.length() != 2
@@ -68,17 +59,10 @@ public class Position {
             result = new Position(rank, file);
         return result;
     }
-    public static Position[] appendPositionsToArray(ArrayList<Position> arr, Position elements){
-        Position[] result = new Position[arr.size() + elements.length];
-
-        for (int i = 0; i < arr.size(); i++)
-            result[i] = arr[i];
-        for (int i = 0; i < elements.; i++)
-            result[arr.length + i] = elements[i];
-
-        return result;
+    public static ArrayList<Position> appendPositionsToArray(ArrayList<Position> arr, Position element){
+        arr.add(element);
+        return arr;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

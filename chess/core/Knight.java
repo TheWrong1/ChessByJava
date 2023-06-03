@@ -1,14 +1,14 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public class Knight extends Piece {
     public Knight() {
         super();
     }
-
     public Knight(Chess.PieceColor color) {
         super(color);
     }
-
     public String toString() {
         if (this.getPieceColor() == Chess.PieceColor.WHITE)
             return "N";
@@ -16,7 +16,7 @@ public class Knight extends Piece {
             return "n";
     }
 
-    public Position[] allDestinations(Chess chess, Position p) {
+    public ArrayList<Position> allDestinations(Chess chess, Position p) {
         int[][] pattern = {
                 {p.getRank() + 2, p.getFile() + 1},
                 {p.getRank() + 2, p.getFile() - 1},
@@ -29,7 +29,7 @@ public class Knight extends Piece {
                 {p.getRank() - 1, p.getFile() - 2}
         };
 
-        Position[] result = new Position[0];
+        ArrayList<Position> result = new ArrayList<>();
 
         for (int i = 0; i < pattern.length; i++) {
             Position potential = Position.generateFromRankAndFile(pattern[i][0],

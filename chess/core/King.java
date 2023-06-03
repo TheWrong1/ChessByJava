@@ -1,5 +1,7 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public class King extends Piece implements Cloneable {
     private boolean hasMoved;
 
@@ -29,7 +31,7 @@ public class King extends Piece implements Cloneable {
         return copy;
     }
 
-    public Position[] allDestinations(Chess chess, Position p) {
+    public ArrayList<Position> allDestinations(Chess chess, Position p) {
         //preliminary, check mechanism not implemented.
         int[][] pattern = {
                 {p.getRank() - 1, p.getFile() - 1},
@@ -44,7 +46,7 @@ public class King extends Piece implements Cloneable {
                 {p.getRank() + 1, p.getFile() + 1}
         };
 
-        Position[] result = new Position[0];
+        ArrayList<Position> result = new ArrayList<>();
 
         for (int i = 0; i < pattern.length; i++) {
             Position potential = Position.generateFromRankAndFile(pattern[i][0],

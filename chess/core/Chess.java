@@ -1,5 +1,7 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public class Chess {
     static boolean whiteKingPresent = false;
     static boolean blackKingPresent = false;
@@ -15,7 +17,6 @@ public class Chess {
     }
     private Piece[][] board;
     private int numberOfMoves;
-
     public Chess() {
         this("rnbqkbnr" +
                         "pppppppp" +
@@ -128,7 +129,7 @@ public class Chess {
     public Piece getPieceAt(Position p) {
         return this.board[p.getRank()][p.getFile()];
     }
-    public Position[] reachableFrom(Position origin) {
+    public ArrayList<Position> reachableFrom(Position origin) {
         if (origin == null || this.isEmpty(origin))
             return null;
 
@@ -142,11 +143,11 @@ public class Chess {
         if (this.getPieceAt(o).getPieceColor() != this.getTurn())
             return false;
 
-        Position[] reachable = this.reachableFrom(o);
+        ArrayList<Position> reachable = this.reachableFrom(o);
 
-        for (int i = 0; i < reachable.length; i++)
-            if (d.getRank() == reachable[i].getRank()
-                    && d.getFile() == reachable[i].getFile()) {
+        for (int i = 0; i < reachable.size(); i++)
+            if (d.getRank() == reachable.get(i).getRank()
+                    && d.getFile() == reachable.get(i).getFile()) {
                 this.board[d.getRank()][d.getFile()] = this.board[o.getRank()][o.getFile()];
                 this.board[o.getRank()][o.getFile()] = null;
                 this.numberOfMoves++;

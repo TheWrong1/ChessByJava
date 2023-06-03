@@ -1,5 +1,7 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public class Queen extends Piece {
     public Queen() {
         super();
@@ -16,10 +18,12 @@ public class Queen extends Piece {
             return "q";
     }
 
-    public Position[] allDestinations(Chess chess, Position p) {
-        Position[] result = Rook.reachablePositions(chess, p).toArray(new Position[0]);
-        result = Position.appendPositionsToArray(result,
-                Bishop.reachablePositions(chess, p));
+    public ArrayList<Position> allDestinations(Chess chess, Position p) {
+        ArrayList<Position> result = Rook.reachablePositions(chess, p);
+
+        for (Position item:Bishop.reachablePositions(chess, p)) {
+            result.add(item);
+        }
         return result;
     }
 }

@@ -5,6 +5,7 @@ import chess.core.Move;
 import chess.core.Position;
 import chess.puzzles.Puzzle;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChessConsole {
@@ -17,7 +18,7 @@ public class ChessConsole {
         //starts a game with the default arrangement.
 
         //starts a game with a given arrangement for testing purposes.
-        /*
+
         this.game = new Chess(
                         "--------" +
                         "--pp--p-" +
@@ -28,7 +29,7 @@ public class ChessConsole {
                         "--PP--p-" +
                         "--------",
                 Chess.PieceColor.WHITE);
-         */
+
 
         print();
 
@@ -93,7 +94,7 @@ public class ChessConsole {
     }
 
     public void print(Position origin) {
-        Position[] highlights = null;
+        ArrayList<Position> highlights = null;
         if (origin != null)
             highlights = game.reachableFrom(origin);
 
@@ -108,9 +109,9 @@ public class ChessConsole {
                         && origin.getRank() == i && origin.getFile() == j)
                     isHighlighted = true;
 
-                for (int k = 0; highlights != null && k < highlights.length; k++)
-                    if (highlights[k].getRank() == i
-                            && highlights[k].getFile() == j)
+                for (int k = 0; highlights != null && k < highlights.size(); k++)
+                    if (highlights.get(k).getRank() == i
+                            && highlights.get(k).getFile() == j)
                     {
                         isHighlighted = true;
                         break;

@@ -1,25 +1,21 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public abstract class Piece implements Cloneable {
     private Chess.PieceColor color;
-
     public Piece(Chess.PieceColor color) {
         this.color = color;
     }
-
     public Piece() {
         this(Chess.PieceColor.WHITE);
     }
-
-    public Position[] allDestinations(Chess chess, Position p) {
+    public ArrayList<Position> allDestinations(Chess chess, Position p) {
         return null;
     }
-
     public final Chess.PieceColor getPieceColor() {
         return this.color;
     }
-
-
     @Override
     protected Object clone() throws CloneNotSupportedException {
         try {

@@ -4,28 +4,22 @@ import java.util.ArrayList;
 
 public class Rook extends Piece {
     private boolean hasMoved;
-
     public Rook() {
         this(Chess.PieceColor.WHITE);
     }
-
     public Rook(Chess.PieceColor color) {
         this(color, false);
     }
-
     public Rook(Chess.PieceColor color, boolean hasMoved) {
         super(color);
         this.hasMoved = hasMoved;
     }
-
     public boolean getHasMoved() {
         return this.hasMoved;
     }
-
     public void setHasMoved(boolean hasMoved) {
         this.hasMoved = hasMoved;
     }
-
     public String toString() {
         if (this.getPieceColor() == Chess.PieceColor.WHITE)
             if (this.hasMoved)
@@ -38,15 +32,14 @@ public class Rook extends Piece {
             else
                 return "r";
     }
-
     public ArrayList<Position> allDestinations(Chess chess, Position p) {
         return Rook.reachablePositions(chess, p);
     }
-
     static ArrayList<Position> reachablePositions(Chess chess, Position p) {
         //Accessed by Queens from the same package, does not need to be public.
         int[] rankOffsets = {1, -1, 0, 0};
         int[] fileOffsets = {0, 0, 1, -1};
+
         ArrayList<Position> result = new ArrayList<>();
 
         for (int d = 0; d < 4; d++) {
@@ -71,7 +64,6 @@ public class Rook extends Piece {
 
         return result;
     }
-
     public Rook clone() throws CloneNotSupportedException {
         // this method is not really necessary
         return (Rook) super.clone();

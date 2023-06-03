@@ -1,5 +1,7 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public class Pawn extends Piece {
     public Pawn() {
         this(Chess.PieceColor.WHITE);
@@ -16,8 +18,8 @@ public class Pawn extends Piece {
             return "p";
     }
 
-    public Position[] allDestinations(Chess chess, Position p) {
-        Position[] result = new Position[0];
+    public ArrayList<Position> allDestinations(Chess chess, Position p) {
+        ArrayList<Position> result = new ArrayList<>();
         Chess.PieceColor myColor = chess.getPieceAt(p).getPieceColor();
 
         Position front = null, jump = null, left = null, right = null;

@@ -1,5 +1,7 @@
 package chess.core;
 
+import java.util.ArrayList;
+
 public class Bishop extends Piece {
     public Bishop() {
         super();
@@ -16,13 +18,13 @@ public class Bishop extends Piece {
             return "b";
     }
 
-    public Position[] allDestinations(Chess chess, Position p) {
+    public ArrayList<Position> allDestinations(Chess chess, Position p) {
         return Bishop.reachablePositions(chess, p);
     }
 
-    static Position[] reachablePositions(Chess chess, Position p) {
+    static ArrayList<Position> reachablePositions(Chess chess, Position p) {
         //Accessed by Queens, does not have to be public
-        Position[] result = new Position[0];
+        ArrayList<Position> result = new ArrayList<>();
 
         int[] rankOffsets = {1, -1, 1, -1};
         int[] fileOffsets = {1, 1, -1, -1};
