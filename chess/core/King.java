@@ -4,33 +4,27 @@ import java.util.ArrayList;
 
 public class King extends Piece implements Cloneable {
     private boolean hasMoved;
-
     public King() {
         this(Chess.PieceColor.WHITE);
     }
-
     public King(Chess.PieceColor color) {
         this(color, false);
     }
-
     public King(Chess.PieceColor color, boolean hasMoved) {
         super(color);
         this.hasMoved = hasMoved;
     }
-
     public String toString() {
         if (this.getPieceColor() == Chess.PieceColor.WHITE)
             return "K";
         else
             return "k";
     }
-
     @Override
     protected Object clone() throws CloneNotSupportedException {
         King copy = (King)super.clone();
         return copy;
     }
-
     public ArrayList<Position> allDestinations(Chess chess, Position p) {
         //preliminary, check mechanism not implemented.
         int[][] pattern = {

@@ -10,26 +10,12 @@ import java.util.Scanner;
 
 public class ChessConsole {
     private Chess game;
-
     public void play() {
         Scanner sc = new Scanner(System.in);
         String inputLine;
 
         //starts a game with the default arrangement.
-
-        //starts a game with a given arrangement for testing purposes.
-
-        this.game = new Chess(
-                        "--------" +
-                        "--pp--p-" +
-                        "--P----P" +
-                        "----b---" +
-                        "k------K" +
-                        "--N---B-" +
-                        "--PP--p-" +
-                        "--------",
-                Chess.PieceColor.WHITE);
-
+        this.game = new Chess();
 
         print();
 
@@ -83,7 +69,6 @@ public class ChessConsole {
             }
         }
     }
-
     private void printInstructions() {
         System.out.println("Input 'p' to play chess.");
         System.out.println("Input 'l' to list the puzzles in the database.");
@@ -92,7 +77,6 @@ public class ChessConsole {
         System.out.println("Input 'p <number>' to play a puzzle.");
         System.out.println("If you want to end the program, input 'q'.");
     }
-
     public void print(Position origin) {
         ArrayList<Position> highlights = null;
         if (origin != null)
@@ -138,7 +122,6 @@ public class ChessConsole {
         System.out.println("   A  B  C  D  E  F  G  H ");
         System.out.println();
     }
-
     public void print() {
         print(null);
     }

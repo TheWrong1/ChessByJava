@@ -20,7 +20,7 @@ public class Position {
         this.setRank(other.rank);
         this.setFile(other.file);
     }
-    private Position(int rank, int file) {
+    public Position(int rank, int file) {
         this.setRank(rank);
         this.setFile(file);
     }
