@@ -19,7 +19,7 @@ public class ChessConsole {
 
         print();
 
-        while (!game.isGameOver()) {
+        while (!game.isGameOver()){
             if (game.getTurn() == Chess.PieceColor.WHITE)
                 System.out.println("White's move: ");
             else
