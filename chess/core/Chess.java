@@ -3,8 +3,8 @@ package chess.core;
 import java.util.ArrayList;
 
 public class Chess {
-    static boolean whiteKingPresent = false;
-    static boolean blackKingPresent = false;
+    public static boolean whiteKingPresent = false;
+    public static boolean blackKingPresent = false;
     public enum PieceColor {WHITE, BLACK}
     public static final int BOARD_RANKS = 8;
     public static final int BOARD_FILES = 8;
@@ -16,6 +16,11 @@ public class Chess {
         return copy;
     }
     private Piece[][] board;
+
+    public int getNumberOfMoves() {
+        return numberOfMoves;
+    }
+
     private int numberOfMoves;
     public Chess() {
         this("rnbqkbnr" +
@@ -32,7 +37,6 @@ public class Chess {
         this.numberOfMoves = turn.ordinal();
         this.board = new Piece[BOARD_RANKS][BOARD_FILES];
 
-//        boolean whiteKingPresent = false, blackKingPresent = false;
         for (int i = 0; i < arrangement.length(); i++) {
             switch (arrangement.charAt(i)) {
                 case 'R':
@@ -121,7 +125,7 @@ public class Chess {
         return PieceColor.values()[this.numberOfMoves % 2];
     }
     public boolean isGameOver() {
-        return false;
+        return !(whiteKingPresent && blackKingPresent);
     }
     public boolean isEmpty(Position p) {
         return this.board[p.getRank()][p.getFile()] == null;
@@ -140,20 +144,28 @@ public class Chess {
         Position o = m.getOrigin();
         Position d = m.getDestination();
 
-        if (this.getPieceAt(o).getPieceColor() != this.getTurn())
+        if (this.getPieceAt(o) == null || this.getPieceAt(o).getPieceColor() != this.getTurn()){
             return false;
+        }else{
+            ArrayList<Position> reachable = this.reachableFrom(o);
 
-        ArrayList<Position> reachable = this.reachableFrom(o);
-
-        for (int i = 0; i < reachable.size(); i++)
-            if (d.getRank() == reachable.get(i).getRank()
-                    && d.getFile() == reachable.get(i).getFile()) {
-                this.board[d.getRank()][d.getFile()] = this.board[o.getRank()][o.getFile()];
-                this.board[o.getRank()][o.getFile()] = null;
-                this.numberOfMoves++;
-                return true;
+            for (int i = 0; i < reachable.size(); i++) {
+                if (d.getRank() == reachable.get(i).getRank()
+                        && d.getFile() == reachable.get(i).getFile()) {
+                    if (this.board[d.getRank()][d.getFile()] instanceof King){
+                        if (this.board[d.getRank()][d.getFile()].getPieceColor() == PieceColor.BLACK){
+                            blackKingPresent = false;
+                        }else {
+                            whiteKingPresent = false;
+                        }
+                    }
+                    this.board[d.getRank()][d.getFile()] = this.board[o.getRank()][o.getFile()];
+                    this.board[o.getRank()][o.getFile()] = null;
+                    this.numberOfMoves++;
+                    return true;
+                }
             }
-
+        }
         return false;
     }
     public static void verifyArrangement(String s) throws IllegalArrangementException {

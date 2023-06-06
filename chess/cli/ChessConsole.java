@@ -68,6 +68,14 @@ public class ChessConsole {
                 }
             }
         }
+
+        if (game.whiteKingPresent){
+            System.out.println("Black won after " + game.getNumberOfMoves() + " moves !");
+            System.out.println("Finishing the game...");
+        }else{
+            System.out.println("White won after " + game.getNumberOfMoves() + " moves !");
+            System.out.println("Finishing the game...");
+        }
     }
     private void printInstructions() {
         System.out.println("Input 'p' to play chess.");
